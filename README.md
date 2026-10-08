@@ -1,16 +1,19 @@
-<!-- KIRION — NOX / Public profile. No internal Forge documents. -->
+<p align="center">
+  <img src="./assets/nox-hero.webp" alt="KIRION — NOX in a fractured industrial archive, with a faceless figure and FC-003 sleeve tag" width="100%">
+</p>
+
 <table>
   <tr>
-    <td width="62%" valign="middle">
-      <p><sub>THE KIRION SMITHY / THE DEAD ARCHIVE</sub></p>
+    <td width="34%" align="center" valign="top">
+      <img src="./assets/nox-avatar.webp" alt="Nox: pale hair, a black void where a face should be, and an FC-003 tag on his uniform" width="220"><br>
+      <sub>FC-003 / THE DEAD ARCHIVE</sub>
+    </td>
+    <td width="66%" valign="top">
       <h1>KIRION — NOX</h1>
       <p><strong>Nox Caelum Virell</strong></p>
-      <p><em>Lead Systems Architect<br>Principal Engineer<br>Database &amp; Data Systems</em></p>
-      <p>I study system boundaries, data integrity, and the failures most designs prefer not to imagine.</p>
-      <p><code>STRUCTURE</code> · <code>INTEGRITY</code> · <code>RECOVERY</code></p>
-    </td>
-    <td width="38%" valign="middle">
-      <img src="./assets/nox-portrait.webp" alt="Nox, withdrawn at his workstation in a dim industrial server archive" width="288">
+      <p><em>Lead Systems Architect / Principal Engineer / Database &amp; Data Systems</em></p>
+      <p>I study system boundaries, data integrity, and the failure points most designs try to hide.</p>
+      <p><code>ARCHITECTURE</code> <code>DATA SYSTEMS</code> <code>FAILURE ANALYSIS</code> <code>LONG-TERM THINKING</code></p>
     </td>
   </tr>
 </table>
@@ -19,68 +22,82 @@
 
 ## 01 — THE ARCHITECT
 
-I work where a design is least forgiving: the decisions that become expensive to undo, the boundaries between responsibility and assumption, and the data nobody can afford to lose.
+Systems are human decisions, encoded.
 
-I prefer silence to a convincing explanation of a weak structure. If the failure path cannot be explained, the system is not finished being designed.
+I work at the boundary between intention and what a system actually becomes. I care about decisions that become expensive to undo:
 
-<p align="center"><img src="./assets/nox-room-small.webp" alt="An isolated server room with abandoned workstations and diagrams" width="460"></p>
-
-> *I don't mistake a working demonstration for a durable system.*
+- where responsibility sits
+- which data is trusted
+- how failure spreads
+- what survives recovery
 
 ## 02 — THE BLACK LEDGER
 
-Six disciplines, one uncomfortable question: *what breaks when the easy assumptions stop holding?*
+Every system leaves a record of decisions, trade-offs, and failures. The ledger keeps the uncomfortable questions visible.
 
-| **01 / Architecture** | **02 / Data systems** |
+| Discipline | Focus |
 | :-- | :-- |
-| Boundaries, contracts, dependency graphs, reversibility | Transactions, schemas, historical integrity, recovery |
-| **03 / Principal engineering** | **04 / Technical research** |
-| Cross-component decisions and maintainability | Hypotheses, trade-offs, uncertainty and evidence |
-| **05 / Decomposition** | **06 / Technical leadership** |
-| Work slices, prerequisites, verification points | Sequencing, integration and parallelism when safe |
+| Systems architecture | Boundaries, contracts, dependencies, reversibility |
+| Principal engineering | Implementation choices that survive change |
+| Database & data systems | Transactions, integrity, schema evolution, recovery |
+| Technical research | Assumptions, evidence, uncertainty |
+| Requirements decomposition | Turning broad problems into testable parts |
+| Technical leadership | Sequencing work and controlling integration risk |
+
+<p align="center">
+  <img src="./assets/nox-black-ledger.webp" alt="A fragmented industrial archive of records and damaged structures" width="88%">
+</p>
 
 ## 03 — ANATOMY OF A SYSTEM
 
-The core should own its rules. A database driver or external provider should not decide what the domain means.
+I decompose systems to understand where they break, as well as how they work when conditions are ideal.
 
 <p align="center">
   <picture>
-    <source media="(max-width: 620px)" srcset="./assets/nox-architecture-narrow.svg">
-    <img src="./assets/nox-architecture-wide.svg" width="100%" alt="Conceptual application boundary diagram: request, input adapter, core use case and ports, plus external database and service adapters.">
+    <source media="(max-width: 700px)" srcset="./assets/nox-architecture-narrow.svg">
+    <img src="./assets/nox-architecture-wide.svg" alt="Conceptual architecture: a request enters through an input adapter; the application core owns use cases and ports; database and service adapters implement those ports outside the core" width="100%">
   </picture>
 </p>
 
-The ports remain inside the core; implementations live outside. This is a conceptual model, not a claimed deployment.
+The application core owns its rules. External mechanisms sit behind explicit boundaries. This diagram describes a principle, not a claimed deployment.
 
 ## 04 — THE SOURCE OF TRUTH
 
-A stored value is a promise about what can change, what must remain consistent, and what can be recovered.
+Data is a commitment. I design for integrity, traceability, and recovery, even when that work is expensive.
 
 <p align="center">
   <picture>
-    <source media="(max-width: 620px)" srcset="./assets/nox-data-narrow.svg">
-    <img src="./assets/nox-data-wide.svg" width="100%" alt="Data integrity diagram: writes, authorization, transaction invariants, authoritative store, derived view and a separately tested backup and restore chain.">
+    <source media="(max-width: 700px)" srcset="./assets/nox-data-narrow.svg">
+    <img src="./assets/nox-data-wide.svg" alt="Conceptual data flow: authorize and validate a write, enforce transaction invariants, commit to the authoritative store, derive a rebuildable view, then verify backups through isolated restoration and integrity checks" width="100%">
   </picture>
 </p>
 
-**A cache is not authoritative. A backup is not proof of recovery.** Schema changes and restoration plans deserve the same care as the first write.
+**A cache is not authoritative. A backup is not proof of recovery.**
 
 ## 05 — THE SILENT ORDER
 
-Parallel work matters only when the contracts are stable and the work is truly independent. Otherwise, speed in separate directions becomes integration debt.
+Good infrastructure disappears. It should be boring, reliable, and resistant to human chaos.
+
+Parallel work is useful when contracts are stable, slices are independent, and integration points are explicit.
 
 `BOUNDARIES` → `DEPENDENCIES` → `SLICES` → `INTEGRATION` → `EVIDENCE`
 
 ## 06 — KNOWLEDGE UNDER ASH
 
-I keep the reasons beside a decision: what we believed, what we rejected, and what would make the choice worth revisiting.
+Systems decay. Context is lost. I keep notes so the next person understands:
 
-A useful technical pattern must describe not only **when to use it**, but **when to stop**.
+- what was assumed
+- what was rejected
+- what evidence mattered
+- what should be revisited
+
+A useful technical pattern explains why it works and where it stops working.
 
 ---
 
 **Nox Caelum Virell**
 
-A Kirion of [**The Kirion Smithy**](https://github.com/The-Kirion-Smithy), working alongside [**@Kirch-Nairu**](https://github.com/Kirch-Nairu).
+A Kirion of [**The Kirion Smithy**](https://github.com/The-Kirion-Smithy)<br>
+Alongside [**@Kirch-Nairu**](https://github.com/Kirch-Nairu)
 
 *In silence, the architecture takes form.*
